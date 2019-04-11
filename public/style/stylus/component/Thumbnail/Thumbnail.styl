@@ -1,0 +1,38 @@
+.thumbnail
+  width 100%
+  max-width $contentMaxWidth
+  min-width $contentMinWidth
+  display flex
+  flex-flow row wrap
+  justify-content flex-start
+  align-items center
+  margin 26px 0 90px 0
+  .spaceFix
+    width 20px
+    height 170px
+    flex auto
+  .caption
+    width 220px
+    height 170px
+    min-width 30px
+    border 1px solid #f0b9b8
+    margin-bottom 20px
+    border-radius 4px
+    display flex
+    flex-direction column
+    justify-content center
+    align-items center
+    color #e27471
+    cursor pointer
+    background #fefbfb
+  .caption img
+    margin-bottom 30px
+  .active
+    display none
+  .caption:hover
+    background #e27471
+    color #ffffff
+  .caption:hover .active
+    display block
+  .caption:hover .normal
+    display none
