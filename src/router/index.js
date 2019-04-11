@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-// import HelloWorld from '@/components/HelloWorld'
 import Index from '@/views/Index.vue'
 import Home from '@/views/home/home.vue'
 import Passage from '@/views/home/passage.vue'
