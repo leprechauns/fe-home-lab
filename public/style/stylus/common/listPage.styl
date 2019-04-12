@@ -1,0 +1,47 @@
+.container
+  height 100%
+  flex 1
+  display flex
+  flex-flow: column nowrap
+  align-items center
+.list-board
+  padding-top $listSpace
+  max-width $listWidth
+  width 100%
+  flex 1
+  display flex
+  flex-flow: column nowrap
+  .list-item
+    width 100%
+    display flex
+    flex-flow column nowrap
+    padding-bottom $listSpace
+    margin-top $listSpace
+    border-bottom 1px solid $lineGray
+    .title
+      display flex
+      flex-flow row nowrap
+      cursor pointer
+      .article 
+        color $black
+        max-width 960px
+        line-height 22px
+        overflow hidden
+        white-space nowrap
+        text-overflow ellipsis
+        flex 1
+      .time
+        color $gray1
+        width 100px
+        flex none
+    &:hover
+      .article, .time
+        color: $labmaiRed
+    .detail
+      margin-top 16px
+      line-height 18px
+      max-width 960px
+      color $gray2
+      overflow hidden
+      white-space nowrap
+      text-overflow ellipsis
