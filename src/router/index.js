@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Index from '@/views/Index.vue'
-import Home from '@/views/home/home.vue'
-import Passage from '@/views/home/passage.vue'
-import Load from '@/views/home/load.vue'
+import Home from '@/views/home/Home.vue'
+import NoticeList from '@/views/home/NoticeList.vue'
+import FileLoad from '@/views/home/FileLoad.vue'
 
 Vue.use(Router)
 
@@ -11,20 +11,20 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Index',
+      name: 'index',
       component: Index,
       children: [{
         path: '/',
         name: 'home',
         component: Home
       }, {
-        path: '/passage',
+        path: '/notice-list',
         name: 'passage',
-        component: Passage
+        component: NoticeList
       }, {
-        path: '/load',
-        name: 'load',
-        component: Load
+        path: '/file-load',
+        name: 'file-load',
+        component: FileLoad
       }]
     }
   ]

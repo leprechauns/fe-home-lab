@@ -16,7 +16,7 @@
       "component",
       {
         "libraryName": "element-ui",
-        "styleLibraryName": "theme-chalk"
+        "styleLibraryName": "~public/style/css/element-theme"
       }
     ]
   ]

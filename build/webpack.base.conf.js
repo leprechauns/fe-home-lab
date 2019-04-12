@@ -47,20 +47,16 @@ module.exports = {
         loader: 'style-loader!css-loader!stylus-loader'
       },
       {
+        test: /\.css$/,
+        loader: ['style-loader', 'css-loader']
+      },
+      {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',
         options: {
           limit: 10000,
           name: utils.assetsPath('img/[name].[hash:7].[ext]')
         }
-      },
-      {
-        test: /\.css$/,
-        loader: 'file-loader'
-      },
-      {
-        test: /\.css$/,
-        loader: 'vue-style-loader!css-loader'
       },
       {
         test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
