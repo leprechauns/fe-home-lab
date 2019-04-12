@@ -15,8 +15,7 @@
     // [
     //   "component",
     //   [{
-    //     "libraryName": "element-ui",
-    //     "styleLibraryName": "./public/style/css/element-theme"
+    //     "libraryName": "element-ui"
     //   }]
     // ]
   ]
