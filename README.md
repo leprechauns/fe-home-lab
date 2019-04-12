@@ -1,6 +1,6 @@
 # fe-home-lab
 
-> A Vue.js project
+> fe-home
 
 ## Build Setup
 
