@@ -37,7 +37,7 @@ export default {
       data: [],
       currentPage: 1,
       pageSize: 10,
-      pageTotal: 0
+      pageTotal: 1
     }
   },
   mounted () {
