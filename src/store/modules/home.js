@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Home from 'src/model/home'
+import Home from '@/model/home'
 
 let homeApi = new Home()
 

@@ -23,6 +23,9 @@ export default {
     styleChange ({ height }) {
     }
   },
+  beforeMount () {
+    this.$store.dispatch({ type: 'fetchBasisInfo' })
+  },
   watch: {
     '$route': {
       handler: function (to, from) {

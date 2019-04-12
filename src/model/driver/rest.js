@@ -1,5 +1,5 @@
 import Axios from 'axios'
-import config from '~/config'
+import config from '../../../config'
 class Rest {
   constructor ({ baseURL = config.server.baseUrl, headers = {} }) {
     this.axios = Axios.create({
