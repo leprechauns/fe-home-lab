@@ -8,7 +8,6 @@
       .list-item(v-for='item in data')
         .title
           .article {{ item.title }}
-          .download
           .time {{ item.ctime }}
         .detail {{ item.content }}
     el-pagination(
@@ -35,7 +34,7 @@ export default {
       data: [],
       currentPage: 1,
       pageSize: 10,
-      pageTotal: 100
+      pageTotal: 0
     }
   },
   mounted () {
@@ -47,7 +46,7 @@ export default {
         type: 'fetchList',
         target: 'notice',
         page: val,
-        perpage: pageSize
+        perpage: this.pageSize
       })
       this.data = result.list
       this.currentPage = val

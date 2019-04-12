@@ -94,10 +94,10 @@ export default {
   },
   methods: {
     goInfo () {
-      this.$router.push({ name: 'passage' })
+      this.$router.push({ name: 'notice-list' })
     },
     goDownload () {
-      this.$router.push({ name: 'load' })
+      this.$router.push({ name: 'file-load' })
     }
   },
   watch: {

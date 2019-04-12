@@ -2,14 +2,16 @@
   .container.load
     Top(:title='btnTitle')
     .banner
-      img.background(src='/public/img/banner2.png')
+      img.background(src='../../../public/img/banner2.png')
       span 文件下载
     .list-board
       .list-item(v-for='item in data')
         .title
           .article {{ item.title }}
           .download
-          .time {{ item.time }}
+            img.normal(src='../../../public/img/下载.png')
+            img.active(src='../../../public/img/下载2.png')
+          .time {{ item.ctime }}
     el-pagination(
       @current-change='handleCurrentChange'
       :current-page.sync='currentPage'
@@ -34,7 +36,7 @@ export default {
       data: [],
       currentPage: 1,
       pageSize: 10,
-      pageTotal: 100
+      pageTotal: 0
     }
   },
   mounted () {
@@ -46,7 +48,7 @@ export default {
         type: 'fetchList',
         target: 'files',
         page: val,
-        perpage: pageSize
+        perpage: this.pageSize
       })
       this.currentPage = val
       this.data = result.list
