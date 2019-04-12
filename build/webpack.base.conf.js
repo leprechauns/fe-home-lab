@@ -47,10 +47,6 @@ module.exports = {
         loader: 'style-loader!css-loader!stylus-loader'
       },
       {
-        test: /\.css$/,
-        loader: ['style-loader', 'css-loader']
-      },
-      {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',
         options: {
