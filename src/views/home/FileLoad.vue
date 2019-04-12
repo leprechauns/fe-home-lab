@@ -3,7 +3,8 @@
     Top(:title='btnTitle')
     .banner
       img.background(src='../../../public/img/banner2.png')
-      span 文件下载
+      img.bannerTitle(src='../../../public/img/文件下载2.png')
+      span.bannerTitle 文件下载
     .list-board
       .list-item(v-for='item in data')
         .title
