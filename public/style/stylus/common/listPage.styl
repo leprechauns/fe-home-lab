@@ -34,6 +34,16 @@
         color $gray1
         width 100px
         flex none
+      .download
+        .normal
+          display block
+        .active
+          display none
+        &:hover
+          .normal
+            display none
+          .active
+            display block
     &:hover
       .article, .time
         color: $labmaiRed

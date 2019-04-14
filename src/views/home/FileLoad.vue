@@ -2,16 +2,18 @@
   .container.load
     Top(:title='btnTitle')
     .banner
-      img.background(src='/public/img/banner2.png')
-      span 文件下载
+      img.background(src='../../../public/img/banner2.png')
+      img.bannerTitle(src='../../../public/img/文件下载2.png')
+      span.bannerTitle 文件下载
     .list-board
       .list-item(v-for='item in data')
         .title
           .article {{ item.title }}
           .download
-          .time {{ item.time }}
+            img.normal(src='../../../public/img/下载.png')
+            img.active(src='../../../public/img/下载2.png')
+          .time {{ item.ctime }}
     el-pagination(
-      @size-change='handleSizeChange'
       @current-change='handleCurrentChange'
       :current-page.sync='currentPage'
       :page-size='pageSize'
@@ -32,20 +34,27 @@ export default {
   data () {
     return {
       btnTitle: '管理方入口',
-      data: [{ title: '北师大', time: '2019-03-09', detail: '123ashdpfhapuehpauh' },
-        { title: '北师大', time: '2019-03-09', detail: '123ashdpfhapuehpauh' },
-        { title: '北师大', time: '2019-03-09', detail: '123ashdpfhapuehpauh' },
-        { title: '北师大', time: '2019-03-09', detail: '123ashdpfhapuehpauh' },
-        { title: '北师大', time: '2019-03-09', detail: '123ashdpfhapuehpauh' },
-        { title: '北师大', time: '2019-03-09', detail: '123ashdpfhapuehpauh' }],
+      data: [],
       currentPage: 1,
       pageSize: 10,
-      pageTotal: 100
+      pageTotal: 1
     }
   },
+  mounted () {
+    this.handleCurrentChange(this.currentPage)
+  },
   methods: {
-    handleSizeChange () {},
-    handleCurrentChange () {}
+    handleCurrentChange (val) {
+      let result = this.$store.dispatch({
+        type: 'fetchList',
+        target: 'files',
+        page: val,
+        perpage: this.pageSize
+      })
+      this.currentPage = val
+      this.data = result.list
+      this.pageTotal = Math.floor(result.total / this.pageSize)
+    }
   }
 }
 </script>

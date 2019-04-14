@@ -21,7 +21,7 @@ export default new Router({
         component: Home
       }, {
         path: '/notice-list',
-        name: 'passage',
+        name: 'notice-list',
         component: NoticeList
       }, {
         path: '/file-load',
