@@ -13,14 +13,14 @@
 - 添加 nginx 配置：
 ```
     location ~* ^/dist(/.*\.(js|css|png|jpg|jpeg|gif|ico|swf|pdf|eot|ttf|woff))$ {
-        root /data/fe-home/dist;
+        root /data/labmai-fe-home-entry/dist;
         log_not_found off;
         access_log off;
         try_files $1 404 break;
     }
 
     location ~ ^/labmai/home(/)?$ {
-        root /data/fe-home/view/home;
+        root /data/labmai-fe-home-entry/dist;
         try_files $1 $1/index.html 404 break;
     }
 ```

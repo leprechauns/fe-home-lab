@@ -23,9 +23,9 @@ const webpackConfig = merge(baseWebpackConfig, {
   },
   devtool: config.build.productionSourceMap ? config.build.devtool : false,
   output: {
-    path: path.join(__dirname, '../labmai/home'),
+    path: path.join(__dirname, '../dist'),
     filename: 'js/[name].[chunkhash].js',
-    publicPath: '/labmai/home/'
+    publicPath: '/dist/'
   },
   plugins: [
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
