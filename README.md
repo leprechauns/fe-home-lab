@@ -4,7 +4,7 @@
 ### 开发模式
 - npm install
 - npm run dev
-- 浏览器打开 http://localhost:8080/dist/home
+- 浏览器打开 http://localhost:8001/dist/home
 
 ### 生产模式
 - 添加相关节点配置文件 config/[node].json
