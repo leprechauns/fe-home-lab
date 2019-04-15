@@ -8,6 +8,8 @@ function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
 
+console.log(config.build.assetsRoot)
+
 module.exports = {
   context: path.resolve(__dirname, '../'),
   entry: {
