@@ -50,3 +50,11 @@ export default {
 }
 </script>
 
+<style>
+.text-retract {
+    text-indent: 2em;
+}
+.text-right {
+    text-align: right;
+}
+</style>

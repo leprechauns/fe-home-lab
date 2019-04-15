@@ -2,9 +2,7 @@
   .container.home
     Top.home(:title='btnTitle')
     .banner
-      .el-carousel(indicator-position="outside")
-        .e-carousel-item(v-for="item in 4" :key="item")
-          h3 {{item}}
+      img.background(src="../../../public/img/banner.png")
       .notice-container
         .notice
           .same-style.same-border
@@ -26,7 +24,7 @@
               span.name {{ item.title }}
               span.date {{ item.ctime }}
     .thumbnail
-      .caption
+      a.caption(href="")
         .normal
           img(src="../../../public/img/云商城.png")
         .active
@@ -110,7 +108,7 @@ export default {
         perpage: 4
       }).then((res)=>{
         if (res.code === 200 && res.content && res.content.list){
-          _this.notices = res.content.list.length >= 4 ? res.content.list.slice(0, 4): res.list
+          _this.notices = res.content.list.length >= 4 ? res.content.list.slice(0, 4): res.content.list
         }
       })
     },
@@ -118,12 +116,12 @@ export default {
       let _this = this;
       this.$store.dispatch({
         type: 'fetchList',
-        target: 'downloads',
+        target: 'files',
         page: 1,
         perpage: 4
       }).then((res) => {
         if (res.code === 200 && res.content && res.content.list){
-          _this.downloads = res.content.list.length >= 4 ? res.content.list.slice(0, 4): res.list
+          _this.downloads = res.content.list.length >= 4 ? res.content.list.slice(0, 4): res.content.list
         }
       })
     }
