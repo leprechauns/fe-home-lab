@@ -23,9 +23,9 @@ const webpackConfig = merge(baseWebpackConfig, {
   },
   devtool: config.build.productionSourceMap ? config.build.devtool : false,
   output: {
-    path: path.join(__dirname, '../dist'),
+    path: path.join(__dirname, '../labmai/home'),
     filename: 'js/[name].[chunkhash].js',
-    publicPath: '/dist/'
+    publicPath: '/labmai/home/'
   },
   plugins: [
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
@@ -111,7 +111,7 @@ const webpackConfig = merge(baseWebpackConfig, {
     // copy custom static assets
     new CopyWebpackPlugin([
       {
-        from: path.resolve(__dirname, '../static'),
+        from: path.resolve(__dirname, '../public'),
         to: config.build.assetsSubDirectory,
         ignore: ['.*']
       }
