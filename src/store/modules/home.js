@@ -11,17 +11,17 @@ const actions = {
   async fetchBasisInfo ({ commit, state }) {
     state.appLoad = true
     let r = await homeApi.get({ target: 'info' })
-    console.log(r)
+    return r;
   },
   async fetchList ({ commit, state }, { target, page, perpage }) {
     state.appLoad = true
     let r = await homeApi.get({ target, data: `${page}/${perpage}` })
-    return r
+    return r;
   },
   async fetchNoticeInfo ({ commit, state }, { id }) {
     state.appLoad = true
-    let r = await homeApi.get({ target: 'notices', data: id })
-    return r
+    let r = await homeApi.get({ target: 'notice', data: id })
+    return r;
   }
 }
 

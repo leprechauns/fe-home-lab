@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Index from '@/views/Index.vue'
 import Home from '@/views/home/Home.vue'
 import NoticeList from '@/views/home/NoticeList.vue'
+import NoticeDetail from '@/views/home/NoticeDetail.vue'
 import FileLoad from '@/views/home/FileLoad.vue'
 
 Vue.use(Router)
@@ -22,7 +23,11 @@ export default new Router({
       }, {
         path: '/notice-list',
         name: 'notice-list',
-        component: NoticeList
+        component: NoticeList,
+      }, {
+        path: '/detail',
+        name: 'notice-detail',
+        component: NoticeDetail
       }, {
         path: '/file-load',
         name: 'file-load',

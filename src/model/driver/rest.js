@@ -6,7 +6,11 @@ class Rest {
       baseURL,
       timeout: 20000,
       // session支持
-      withCredentials: true,
+      'content-type': 'application/json',
+      'Accept': 'application/json',
+      'Access-Control-Allow-Credentials':true,
+      'Access-Control-Allow-Origin':true,
+      // withCredentials: true,
       headers
     })
     return this

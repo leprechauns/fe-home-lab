@@ -45,15 +45,17 @@ export default {
   },
   methods: {
     handleCurrentChange (val) {
-      let result = this.$store.dispatch({
+      let _this = this;
+      this.$store.dispatch({
         type: 'fetchList',
-        target: 'files',
+        target: 'downloads',
         page: val,
-        perpage: this.pageSize
+        perpage: _this.pageSize
+      }).then((res) => {
+        _this.currentPage = val
+        _this.data = res.list
+        _this.pageTotal = res.total
       })
-      this.currentPage = val
-      this.data = result.list
-      this.pageTotal = Math.floor(result.total / this.pageSize)
     }
   }
 }

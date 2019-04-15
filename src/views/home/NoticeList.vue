@@ -6,7 +6,7 @@
       img.bannerTitle(src='../../../public/img/通知公告2.png')
       span.bannerTitle 通知公告
     .list-board
-      .list-item(v-for='item in data')
+      .list-item(v-for='item in data' @click="goDetail(item.id)")
         .title
           .article {{ item.title }}
           .time {{ item.ctime }}
@@ -42,16 +42,23 @@ export default {
     this.handleCurrentChange(this.currentPage)
   },
   methods: {
+    goDetail(id){
+      this.$router.push({ name: 'notice-detail', params: {id} })
+    },
     handleCurrentChange (val) {
-      let result = this.$store.dispatch({
+      const _this = this;
+      this.$store.dispatch({
         type: 'fetchList',
-        target: 'notice',
+        target: 'notices',
         page: val,
         perpage: this.pageSize
+      }).then((res)=>{
+        if (res.code === 200 && res.content && res.content.list) {
+          _this.data = res.content.list
+          _this.currentPage = val
+          _this.pageTotal = res.content.total
+        }
       })
-      this.data = result.list
-      this.currentPage = val
-      this.pageTotal = Math.floor(result.total / this.pageSize)
     }
   }
 }
