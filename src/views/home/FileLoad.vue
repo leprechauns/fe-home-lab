@@ -48,13 +48,13 @@ export default {
       let _this = this;
       this.$store.dispatch({
         type: 'fetchList',
-        target: 'downloads',
+        target: 'files',
         page: val,
         perpage: _this.pageSize
       }).then((res) => {
         _this.currentPage = val
-        _this.data = res.list
-        _this.pageTotal = res.total
+        _this.data = res.content.list
+        _this.pageTotal = res.content.total
       })
     }
   }
