@@ -2,7 +2,7 @@
   .container.home
     Top.home(:title='btnTitle')
     .banner
-      .el-carousel(indicator-position="outside")
+      .el-carousel
         .e-carousel-item(v-for="item in 4" :key="item")
           h3 {{item}}
       .notice-container

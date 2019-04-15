@@ -7,7 +7,10 @@
       span.bannerTitle 通知详情
     .notice-detail-header
       .title {{detail.title}}
-      .ctime {{detail.ctime}}
+      .ctime
+        span
+          img(src="../../../public/img/calendar.svg")
+          span {{detail.ctime}}
     .notice-detail-content(v-html="detail.content")
 
 </template>
