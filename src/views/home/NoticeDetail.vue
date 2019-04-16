@@ -35,7 +35,7 @@ export default {
     }
   },
   mounted () {
-    this.getNoticeDetail();
+    this.getNoticeDetail()
   },
   methods: {
     async getNoticeDetail () {

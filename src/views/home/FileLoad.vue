@@ -5,7 +5,7 @@
       img.background(src='../../../public/img/banner2.png')
       img.bannerTitle(src='../../../public/img/文件下载2.png')
       span.bannerTitle 文件下载
-    .list-board
+    .list-board(ref='list')
       .list-item(v-for='item in data')
         .title
           .article {{ item.title }}
@@ -45,6 +45,10 @@ export default {
   },
   methods: {
     async handleCurrentChange (val) {
+      let loading = this.$loading({
+        target: this.$refs.list,
+        fullscreen: false
+      })
       let result = await this.$store.dispatch({
         type: 'fetchList',
         target: 'files',
@@ -54,6 +58,7 @@ export default {
       this.currentPage = val
       this.data = result.content.list
       this.pageTotal = result.content.total
+      loading.close()
     },
     go (link) {}
   }

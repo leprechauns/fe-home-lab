@@ -5,7 +5,7 @@
       img.background(src='../../../public/img/banner2.png')
       img.bannerTitle(src='../../../public/img/通知公告2.png')
       span.bannerTitle 通知公告
-    .list-board
+    .list-board(ref='list')
       .list-item(v-for='item in data' @click="goDetail(item.id)")
         .title
           .article {{ item.title }}
@@ -46,6 +46,10 @@ export default {
       this.$router.push({ name: 'notice-detail', params: {id} })
     },
     async handleCurrentChange (val) {
+      let loading = this.$loading({
+        target: this.$refs.list,
+        fullscreen: false
+      })
       let result = await this.$store.dispatch({
         type: 'fetchList',
         target: 'notices',
@@ -55,6 +59,7 @@ export default {
       this.data = result.content.list
       this.currentPage = val
       this.total = result.content.total
+      loading.close()
     }
   }
 }
