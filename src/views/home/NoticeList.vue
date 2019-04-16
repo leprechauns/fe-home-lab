@@ -9,8 +9,8 @@
       .list-item(v-for='item in data' @click="goDetail(item.id)")
         .title
           .article {{ item.title }}
-          .time {{ item.ctime }}
-        .detail {{ item.content }}
+          .time {{ item.time }}
+        .detail {{ item.brief }}
     el-pagination(
       @current-change='handleCurrentChange'
       :current-page.sync='currentPage'

@@ -1,7 +1,6 @@
 <template lang="pug">
 .top
   img.image(src="../../public/img/logo.png")
-  .entrance {{ title }}
 </template>
 
 <script>

@@ -6,13 +6,13 @@
       img.bannerTitle(src='../../../public/img/文件下载2.png')
       span.bannerTitle 文件下载
     .list-board
-      .list-item(v-for='item in data')
+      a.list-item(v-for='item in data' :href="item.link")
         .title
           .article {{ item.title }}
           .download
             img.normal(src='../../../public/img/下载.png')
             img.active(src='../../../public/img/下载2.png')
-          .time {{ item.ctime }}
+          .time {{ item.time }}
     el-pagination(
       @current-change='handleCurrentChange'
       :current-page.sync='currentPage'
