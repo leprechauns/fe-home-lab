@@ -101,7 +101,6 @@ export default {
         target: 'info',
         background: 'transparent'
       }).then((res)=>{
-        console.log(res.content)
         this.banners = res.content.banners
         this.entry = res.content.entry
       })
