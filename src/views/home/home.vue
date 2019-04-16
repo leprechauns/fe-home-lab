@@ -14,7 +14,7 @@
             .noResult(v-if="notices.length <= 0") 暂无公告
             .same-style.content(v-for="item in notices")(@click="goDetail(item.id)" v-else)
               span.name {{ item.title }}
-              span.date {{ item.ctime }}
+              span.date {{ item.time }}
           .same-style.same-border
             .title
               img(src="../../../public/img/文件下载.png")
@@ -35,6 +35,15 @@
 <script>
 import Top from '@/components/Top.vue'
 import { Carousel, CarouselItem, Loading } from 'element-ui'
+
+const ENTRY_INFO = {
+  "cloud": "云商入口",
+  "exam": "考试系统",
+  "giot": "其他检测",
+  "admin": "管理方",
+  "lab": "买方",
+  "inspection": "安全巡查"
+}
 
 export default {
   components: {
