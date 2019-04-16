@@ -60,7 +60,7 @@ export default {
       })
       this.currentPage = val
       this.data = result.content.list
-      this.pageTotal = result.content.total
+      this.total = result.content.total
       loading.close()
     },
     go (link) {

@@ -21,8 +21,20 @@
     color #e27471
     cursor pointer
     background #fefbfb
+    .default
+      display block
+      margin-bottom 30px
+    .active
+      display none
+      margin-bottom 30px
     &:hover
-      background #e27471
+      background $labmaiRed
       color #ffffff
+      .default
+        display none
+      .active
+        display block
   .caption .img
     margin-bottom 30px
+    display block
+    font-size 54px

@@ -1,0 +1,81 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('fonts/icomoon.eot?oozo35');
+  src:  url('fonts/icomoon.eot?oozo35#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?oozo35') format('truetype'),
+    url('fonts/icomoon.woff?oozo35') format('woff'),
+    url('fonts/icomoon.svg?oozo35#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-exam:before {
+  content: "\e900";
+}
+.icon-inspection:before {
+  content: "\e901";
+}
+.icon-admin:before {
+  content: "\e902";
+}
+.icon-lab:before {
+  content: "\e903";
+}
+.icon-cloud:before {
+  content: "\e904";
+}
+.icon-giot .path1:before {
+  content: "\e905";
+  color: rgb(0, 0, 0);
+}
+.icon-giot .path2:before {
+  content: "\e906";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+  opacity: 0.64;
+}
+.icon-giot .path3:before {
+  content: "\e907";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+  opacity: 0.48;
+}
+.icon-giot .path4:before {
+  content: "\e908";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+  opacity: 0.56;
+}
+.icon-giot .path5:before {
+  content: "\e909";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+  opacity: 0.24;
+}
+.icon-giot .path6:before {
+  content: "\e90a";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+  opacity: 0.64;
+}
+.icon-giot .path7:before {
+  content: "\e90b";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+  opacity: 0.24;
+}

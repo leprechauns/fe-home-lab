@@ -4,6 +4,7 @@ import router from './router'
 // import store from './store'
 import { createStore } from './store'
 import { Loading } from 'element-ui'
+import '../public/style.css'
 
 const store = createStore()
 // 注册全局的element-ui loading

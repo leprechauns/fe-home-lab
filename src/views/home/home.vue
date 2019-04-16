@@ -27,23 +27,20 @@
               span.date {{ item.ctime }}
     .thumbnail
       .caption(v-for="(key, index) in entry" @click="goEntry(key)")
-        .normal(v-if="enterInfo[index]")
-          i.img(:class="enterInfo[index].icon")
+        template(v-if="index === 'giot' && enterInfo[index]")
+          img.default(:src="enterInfo[index].icon")
+          img.active(:src="enterInfo[index].icons")
+        template(v-else-if="enterInfo[index]")
+          .normal
+            i.img(:class="enterInfo[index].icon")
         span {{ enterInfo[index].name}}
 </template>
 
 <script>
 import Top from '@/components/Top.vue'
 import { Carousel, CarouselItem, Loading } from 'element-ui'
-
-const ENTRY_INFO = {
-  "cloud": "云商入口",
-  "exam": "考试系统",
-  "giot": "其他检测",
-  "admin": "管理方",
-  "lab": "买方",
-  "inspection": "安全巡查"
-}
+import giot from '../../../public/img/giot.png'
+import giots from '../../../public/img/giots.png'
 
 export default {
   components: {
@@ -61,27 +58,28 @@ export default {
       enterInfo: {
         cloud: {
           name: '云商城入口',
-          icon: ''
+          icon: 'icon-cloud'
         },
         exam: {
           name: '考试系统',
-          icon: ''
+          icon: 'icon-exam'
         },
         giot: {
           name: '气体检测',
-          icon: ''
+          icon: giot,
+          icons: giots
         },
         admin: {
           name: '管理方',
-          icon: ''
+          icon: 'icon-admin'
         },
         lab: {
           name: '买方',
-          icon: ''
+          icon: 'icon-lab'
         },
         inspection: {
           name: '安全巡查',
-          icon: ''
+          icon: 'icon-inspection'
         }
       }
     }
