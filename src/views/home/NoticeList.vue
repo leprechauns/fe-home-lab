@@ -6,11 +6,14 @@
       img.bannerTitle(src='../../../public/img/通知公告2.png')
       span.bannerTitle 通知公告
     .list-board(ref='list')
-      .list-item(v-for='item in data' @click="goDetail(item.id)")
-        .title
-          .article {{ item.title }}
-          .time {{ item.ctime }}
-        .detail {{ item.content }}
+      template(v-if='data.length > 0')
+        .list-item(v-for='item in data' @click="goDetail(item.id)")
+          .title
+            .article {{ item.title }}
+            .time {{ item.ctime }}
+          .detail {{ item.content }}
+      template(v-else)
+        span.noResult 暂无数据
     el-pagination(
       @current-change='handleCurrentChange'
       :current-page.sync='currentPage'
@@ -50,15 +53,15 @@ export default {
         target: this.$refs.list,
         fullscreen: false
       })
-      let result = await this.$store.dispatch({
-        type: 'fetchList',
-        target: 'notices',
-        page: val,
-        perpage: this.pageSize
-      })
-      this.data = result.content.list
-      this.currentPage = val
-      this.total = result.content.total
+      // let result = await this.$store.dispatch({
+      //   type: 'fetchList',
+      //   target: 'notices',
+      //   page: val,
+      //   perpage: this.pageSize
+      // })
+      // this.data = result.content.list
+      // this.currentPage = val
+      // this.total = result.content.total
       loading.close()
     }
   }

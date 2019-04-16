@@ -6,13 +6,16 @@
       img.bannerTitle(src='../../../public/img/文件下载2.png')
       span.bannerTitle 文件下载
     .list-board(ref='list')
-      .list-item(v-for='item in data')
-        .title
-          .article {{ item.title }}
-          .download(@click='go(item.link)')
-            img.normal(src='../../../public/img/下载.png')
-            img.active(src='../../../public/img/下载2.png')
-          .time {{ item.ctime }}
+      template(v-if='data.length > 0')
+        .list-item(v-for='item in data')
+          .title
+            .article {{ item.title }}
+            .download(@click='go(item.link)')
+              img.normal(src='../../../public/img/下载.png')
+              img.active(src='../../../public/img/下载2.png')
+            .time {{ item.ctime }}
+      template(v-else)
+        span.noResult 暂无数据
     el-pagination(
       @current-change='handleCurrentChange'
       :current-page.sync='currentPage'
@@ -60,7 +63,9 @@ export default {
       this.pageTotal = result.content.total
       loading.close()
     },
-    go (link) {}
+    go (link) {
+      window.location.href = link
+    }
   }
 }
 </script>

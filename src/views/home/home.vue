@@ -4,13 +4,13 @@
     .banner
       img.background(src="../../../public/img/banner.png")
       .notice-container
-        .notice
+        .notice(ref='notice')
           .same-style.same-border
             .title
               img(src="../../../public/img/通知公告.png")
               span 通知公告
             span.info-more.more(@click="goInfo") 更多
-          .info
+          .info(ref='info')
             .same-style.content(v-for="item in notices")(@click="goDetail(item.id)")
               span.name {{ item.title }}
               span.date {{ item.ctime }}
@@ -19,7 +19,7 @@
               img(src="../../../public/img/文件下载.png")
               span 文件下载
             span.download-more.more(@click="goDownload") 更多
-          .download
+          .download(ref='download')
             .same-style.content(v-for="item in downloads")
               span.name {{ item.title }}
               span.date {{ item.ctime }}
@@ -32,7 +32,7 @@
 
 <script>
 import Top from '@/components/Top.vue'
-import { Carousel, CarouselItem } from 'element-ui'
+import { Carousel, CarouselItem, Loading } from 'element-ui'
 
 export default {
   components: {
@@ -100,29 +100,33 @@ export default {
         this.entry = res.content.entry
       })
     },
-    getNotice () {
-      this.$store.dispatch({
+    async getNotice () {
+      let loading = this.$loading({
+        target: this.$refs.info,
+        fullscreen: false
+      })
+      let result = await this.$store.dispatch({
         type: 'fetchList',
         target: 'notices',
         page: 1,
         perpage: 4
-      }).then((res)=>{
-        if (res.content && res.content.list) {
-          this.notices = res.content.list.length >= 4 ? res.content.list.slice(0, 4): res.content.list
-        }
       })
+      this.notices = result.content.list.length >= 4 ? result.content.list.slice(0, 4): result.content.list
+      loading.close()
     },
-    getFileLoadList (val) {
-      this.$store.dispatch({
+    async getFileLoadList (val) {
+      let loading = this.$loading({
+        target: this.$refs.download,
+        fullscreen: false
+      })
+      let result = await this.$store.dispatch({
         type: 'fetchList',
         target: 'files',
         page: 1,
         perpage: 4
-      }).then(res => {
-        if (res.content && res.content.list){
-          this.downloads = res.content.list.length >= 4 ? res.content.list.slice(0, 4): res.content.list
-        }
       })
+      this.downloads = result.content.list.length >= 4 ? result.content.list.slice(0, 4): result.content.list
+      loading.close()
     }
   },
   watch: {
