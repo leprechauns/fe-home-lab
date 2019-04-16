@@ -24,36 +24,10 @@
               span.name {{ item.title }}
               span.date {{ item.ctime }}
     .thumbnail
-      a.caption(href="")
-        .normal
-          img(src="../../../public/img/云商城.png")
-        .active
-          img(src="../../../public/img/云商城s.png")
-        span 云商城
-      .caption
-        .normal
-          img(src="../../../public/img/安全考试.png")
-        .active
-          img(src="../../../public/img/安全考试s.png")
-        span 安全考试
-      .caption
-        .normal
-          img(src="../../../public/img/气体检测.png")
-        .active
-          img(src="../../../public/img/气体检测s.png")
-        span 气体检测
-      .caption
-        .normal
-          img(src="../../../public/img/管理方.png")
-        .active
-          img(src="../../../public/img/管理方s.png")
-        span 管理方
-      .caption
-        .normal
-          img(src="../../../public/img/安全巡查.png")
-        .active
-          img(src="../../../public/img/安全巡查s.png")
-        span 安全巡查
+      .caption(v-for="(key, index) in entry" @click="goEntry(key)")
+        .normal(v-if="enterInfo[index]")
+          i.img(:class="enterInfo[index].icon")
+        span {{ enterInfo[index].name}}
 </template>
 
 <script>
@@ -70,7 +44,34 @@ export default {
     return {
       btnTitle: '管理方入口',
       notices:[],
-      downloads:[]
+      downloads:[],
+      entry: {},
+      enterInfo: {
+        cloud: {
+          name: '云商城入口',
+          icon: ''
+        },
+        exam: {
+          name: '考试系统',
+          icon: ''
+        },
+        giot: {
+          name: '气体检测',
+          icon: ''
+        },
+        admin: {
+          name: '管理方',
+          icon: ''
+        },
+        lab: {
+          name: '买方',
+          icon: ''
+        },
+        inspection: {
+          name: '安全巡查',
+          icon: ''
+        }
+      }
     }
   },
   mounted () {
@@ -82,46 +83,44 @@ export default {
     goInfo () {
       this.$router.push({ name: 'notice-list' })
     },
+    goEntry (url) {
+      window.location.href = url
+    },
     goDownload () {
       this.$router.push({ name: 'file-load' })
     },
-    goDetail(id){
+    goDetail (id) {
       this.$router.push({ name: 'notice-detail', params: {id} })
     },
-    getInfo(){
-      const _this = this;
+    getInfo () {
       this.$store.dispatch({
         type: 'fetchBasisInfo',
         target: 'info'
       }).then((res)=>{
-        if (res.code == 200){
-          console.log(res);
-        }
+        this.entry = res.content.entry
       })
     },
     getNotice () {
-      const _this = this;
       this.$store.dispatch({
         type: 'fetchList',
         target: 'notices',
         page: 1,
         perpage: 4
       }).then((res)=>{
-        if (res.code === 200 && res.content && res.content.list){
-          _this.notices = res.content.list.length >= 4 ? res.content.list.slice(0, 4): res.content.list
+        if (res.content && res.content.list) {
+          this.notices = res.content.list.length >= 4 ? res.content.list.slice(0, 4): res.content.list
         }
       })
     },
     getFileLoadList (val) {
-      let _this = this;
       this.$store.dispatch({
         type: 'fetchList',
         target: 'files',
         page: 1,
         perpage: 4
-      }).then((res) => {
-        if (res.code === 200 && res.content && res.content.list){
-          _this.downloads = res.content.list.length >= 4 ? res.content.list.slice(0, 4): res.content.list
+      }).then(res => {
+        if (res.content && res.content.list){
+          this.downloads = res.content.list.length >= 4 ? res.content.list.slice(0, 4): res.content.list
         }
       })
     }
