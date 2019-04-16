@@ -11,7 +11,8 @@
               span 通知公告
             span.info-more.more(@click="goInfo") 更多
           .info
-            .same-style.content(v-for="item in notices")(@click="goDetail(item.id)")
+            .noResult(v-if="notices.length <= 0") 暂无公告
+            .same-style.content(v-for="item in notices")(@click="goDetail(item.id)" v-else)
               span.name {{ item.title }}
               span.date {{ item.ctime }}
           .same-style.same-border
@@ -20,7 +21,8 @@
               span 文件下载
             span.download-more.more(@click="goDownload") 更多
           .download
-            .same-style.content(v-for="item in downloads")
+            .noResult(v-if="!downloads.length <= 0") 暂无文件
+            .same-style.content(v-for="item in downloads" v-else)
               span.name {{ item.title }}
               span.date {{ item.ctime }}
     .thumbnail
@@ -46,6 +48,7 @@ export default {
       notices:[],
       downloads:[],
       entry: {},
+      banners: [],
       enterInfo: {
         cloud: {
           name: '云商城入口',
@@ -97,6 +100,8 @@ export default {
         type: 'fetchBasisInfo',
         target: 'info'
       }).then((res)=>{
+        console.log(res.content)
+        this.banners = res.content.banners
         this.entry = res.content.entry
       })
     },
@@ -119,7 +124,7 @@ export default {
         page: 1,
         perpage: 4
       }).then(res => {
-        if (res.content && res.content.list){
+        if (res.content && res.content.list) {
           this.downloads = res.content.list.length >= 4 ? res.content.list.slice(0, 4): res.content.list
         }
       })
