@@ -13,7 +13,7 @@
             .time {{ item.ctime }}
           .detail {{ item.content }}
       template(v-else)
-        span.noResult 暂无数据
+        span.noTip 暂无数据
     el-pagination(
       @current-change='handleCurrentChange'
       :current-page.sync='currentPage'

@@ -15,7 +15,7 @@
               img.active(src='../../../public/img/下载2.png')
             .time {{ item.ctime }}
       template(v-else)
-        span.noResult 暂无数据
+        span.noTip 暂无数据
     el-pagination(
       @current-change='handleCurrentChange'
       :current-page.sync='currentPage'
