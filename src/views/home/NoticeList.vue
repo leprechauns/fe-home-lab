@@ -5,18 +5,21 @@
       img.background(src='../../../public/img/banner2.png')
       img.bannerTitle(src='../../../public/img/通知公告2.png')
       span.bannerTitle 通知公告
-    .list-board
-      .list-item(v-for='item in data' @click="goDetail(item.id)")
-        .title
-          .article {{ item.title }}
-          .time {{ item.ctime }}
-        .detail {{ item.content }}
+    .list-board(ref='list')
+      template(v-if='data.length > 0')
+        .list-item(v-for='item in data' @click="goDetail(item.id)")
+          .title
+            .article {{ item.title }}
+            .time {{ item.ctime }}
+          .detail {{ item.content }}
+      template(v-else)
+        span.noResult 暂无数据
     el-pagination(
       @current-change='handleCurrentChange'
       :current-page.sync='currentPage'
       :page-size='pageSize'
       layout='prev, pager, next, total'
-      :total='pageTotal')
+      :total='total')
 </template>
 
 <script>
@@ -35,7 +38,7 @@ export default {
       data: [],
       currentPage: 1,
       pageSize: 10,
-      pageTotal: 1
+      total: 0
     }
   },
   mounted () {
@@ -45,20 +48,21 @@ export default {
     goDetail(id){
       this.$router.push({ name: 'notice-detail', params: {id} })
     },
-    handleCurrentChange (val) {
-      const _this = this;
-      this.$store.dispatch({
-        type: 'fetchList',
-        target: 'notices',
-        page: val,
-        perpage: this.pageSize
-      }).then((res)=>{
-        if (res.code === 200 && res.content && res.content.list) {
-          _this.data = res.content.list
-          _this.currentPage = val
-          _this.pageTotal = res.content.total
-        }
+    async handleCurrentChange (val) {
+      let loading = this.$loading({
+        target: this.$refs.list,
+        fullscreen: false
       })
+      // let result = await this.$store.dispatch({
+      //   type: 'fetchList',
+      //   target: 'notices',
+      //   page: val,
+      //   perpage: this.pageSize
+      // })
+      // this.data = result.content.list
+      // this.currentPage = val
+      // this.total = result.content.total
+      loading.close()
     }
   }
 }
