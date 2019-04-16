@@ -13,7 +13,7 @@
             .download(@click='go(item.link)')
               img.normal(src='../../../public/img/下载.png')
               img.active(src='../../../public/img/下载2.png')
-            .time {{ item.ctime }}
+            .time {{ item.time }}
       template(v-else)
         span.noTip 暂无数据
     el-pagination(

@@ -10,8 +10,8 @@
         .list-item(v-for='item in data' @click="goDetail(item.id)")
           .title
             .article {{ item.title }}
-            .time {{ item.ctime }}
-          .detail {{ item.content }}
+            .time {{ item.time }}
+          .detail {{ item.brief }}
       template(v-else)
         span.noTip 暂无数据
     el-pagination(
@@ -53,15 +53,16 @@ export default {
         target: this.$refs.list,
         fullscreen: false
       })
-      // let result = await this.$store.dispatch({
-      //   type: 'fetchList',
-      //   target: 'notices',
-      //   page: val,
-      //   perpage: this.pageSize
-      // })
-      // this.data = result.content.list
-      // this.currentPage = val
-      // this.total = result.content.total
+      let result = await this.$store.dispatch({
+        type: 'fetchList',
+        target: 'notices',
+        page: val,
+        perpage: this.pageSize
+      })
+      console.log(result)
+      this.data = result.content.list
+      this.currentPage = val
+      this.total = result.content.total
       loading.close()
     }
   }
