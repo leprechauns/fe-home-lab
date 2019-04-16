@@ -7,12 +7,8 @@ export default class Origin {
     this.rest = new Rest({})
   }
   get (params) {
-    let curResource = resource + `/${params.target}`
-    if (params && params.data) {
-      curResource += `/${params.data}`
-    }
     return this.rest.get({
-      resource: curResource
+      resource: params && params.data ? `${resource}/${params.target}/${params.data}` : `${resource}/${params.target}`
     }).then(r => r)
   }
 }
