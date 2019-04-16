@@ -25,7 +25,7 @@ export default new Router({
         name: 'notice-list',
         component: NoticeList,
       }, {
-        path: '/detail',
+        path: '/detail/:id',
         name: 'notice-detail',
         component: NoticeDetail
       }, {

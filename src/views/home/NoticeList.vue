@@ -16,7 +16,7 @@
       :current-page.sync='currentPage'
       :page-size='pageSize'
       layout='prev, pager, next, total'
-      :total='pageTotal')
+      :total='total')
 </template>
 
 <script>
@@ -35,7 +35,7 @@ export default {
       data: [],
       currentPage: 1,
       pageSize: 10,
-      pageTotal: 1
+      total: 0
     }
   },
   mounted () {
@@ -45,20 +45,16 @@ export default {
     goDetail(id){
       this.$router.push({ name: 'notice-detail', params: {id} })
     },
-    handleCurrentChange (val) {
-      const _this = this;
-      this.$store.dispatch({
+    async handleCurrentChange (val) {
+      let result = await this.$store.dispatch({
         type: 'fetchList',
         target: 'notices',
         page: val,
         perpage: this.pageSize
-      }).then((res)=>{
-        if (res.code === 200 && res.content && res.content.list) {
-          _this.data = res.content.list
-          _this.currentPage = val
-          _this.pageTotal = res.content.total
-        }
       })
+      this.data = result.content.list
+      this.currentPage = val
+      this.total = result.content.total
     }
   }
 }

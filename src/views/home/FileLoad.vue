@@ -9,7 +9,7 @@
       .list-item(v-for='item in data')
         .title
           .article {{ item.title }}
-          .download
+          .download(@click='go(item.link)')
             img.normal(src='../../../public/img/下载.png')
             img.active(src='../../../public/img/下载2.png')
           .time {{ item.ctime }}
@@ -18,7 +18,7 @@
       :current-page.sync='currentPage'
       :page-size='pageSize'
       layout='prev, pager, next, total'
-      :total='pageTotal')
+      :total='total')
 </template>
 
 <script>
@@ -37,26 +37,25 @@ export default {
       data: [],
       currentPage: 1,
       pageSize: 10,
-      pageTotal: 1
+      total: 0
     }
   },
   mounted () {
     this.handleCurrentChange(this.currentPage)
   },
   methods: {
-    handleCurrentChange (val) {
-      let _this = this;
-      this.$store.dispatch({
+    async handleCurrentChange (val) {
+      let result = await this.$store.dispatch({
         type: 'fetchList',
         target: 'files',
         page: val,
-        perpage: _this.pageSize
-      }).then((res) => {
-        _this.currentPage = val
-        _this.data = res.content.list
-        _this.pageTotal = res.content.total
+        perpage: this.pageSize
       })
-    }
+      this.currentPage = val
+      this.data = result.content.list
+      this.pageTotal = result.content.total
+    },
+    go (link) {}
   }
 }
 </script>

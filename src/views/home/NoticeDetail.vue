@@ -38,16 +38,12 @@ export default {
     this.getNoticeDetail();
   },
   methods: {
-    getNoticeDetail () {
-      const _this = this;
-      this.$store.dispatch({
+    async getNoticeDetail () {
+      let result = await this.$store.dispatch({
         type: 'fetchNoticeInfo',
         id: this.$route.params.id
-      }).then((res)=>{
-        if (res.code === 200) {
-          _this.detail = res.content;
-        }
       })
+      this.detail = result.content
     }
   }
 }
