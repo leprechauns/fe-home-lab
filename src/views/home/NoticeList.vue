@@ -59,7 +59,6 @@ export default {
         page: val,
         perpage: this.pageSize
       })
-      console.log(result)
       this.data = result.content.list
       this.currentPage = val
       this.total = result.content.total
