@@ -21,7 +21,7 @@
               span 文件下载
             span.download-more.more(@click="goDownload") 更多
           .download(ref='download')
-            .noResult(v-if="!downloads.length <= 0") 暂无文件
+            .noResult(v-if="downloads.length <= 0") 暂无文件
             .same-style.content(v-for="item in downloads" v-else)
               span.name {{ item.title }}
               span.date {{ item.ctime }}
@@ -98,7 +98,8 @@ export default {
     getInfo () {
       this.$store.dispatch({
         type: 'fetchBasisInfo',
-        target: 'info'
+        target: 'info',
+        background: 'transparent'
       }).then((res)=>{
         console.log(res.content)
         this.banners = res.content.banners
@@ -108,7 +109,8 @@ export default {
     async getNotice () {
       let loading = this.$loading({
         target: this.$refs.info,
-        fullscreen: false
+        fullscreen: false,
+        background: 'transparent'
       })
       let result = await this.$store.dispatch({
         type: 'fetchList',
@@ -122,7 +124,8 @@ export default {
     async getFileLoadList (val) {
       let loading = this.$loading({
         target: this.$refs.download,
-        fullscreen: false
+        fullscreen: false,
+        background: 'transparent'
       })
       let result = await this.$store.dispatch({
         type: 'fetchList',
